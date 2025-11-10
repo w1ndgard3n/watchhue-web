@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false)
@@ -12,9 +13,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img 
+            <Image 
               src="/HUE-logo.png" 
               alt="HUE Logo" 
+              width={40}
+              height={40}
               className="h-10 w-auto"
             />
             <span className="text-2xl font-bold text-white">
@@ -40,9 +43,11 @@ export default function Home() {
       {/* Hero Section */}
       <div id="home" className="relative flex flex-col items-center justify-center min-h-screen px-6 pt-20">
         <div className="mb-8 flex flex-col items-center animate-fade-in">
-          <img 
+          <Image 
             src="/HUE-logo.png" 
             alt="HUE Logo" 
+            width={160}
+            height={160}
             className="h-32 md:h-40 mb-6 w-auto"
           />
           <h1 className="text-6xl md:text-8xl font-bold text-white">
@@ -146,17 +151,17 @@ export default function Home() {
 
             <div className="p-6 bg-hue-midnight border border-hue-lime/30 rounded-xl hover:border-hue-lime transition cursor-pointer">
               <h3 className="text-hue-lime font-bold text-lg mb-2">Comedy</h3>
-              <p className="text-gray-400 text-sm">Laughter & joy</p>
+              <p className="text-gray-400 text-sm">Laughter and joy</p>
             </div>
 
             <div className="p-6 bg-hue-midnight border border-hue-gold/30 rounded-xl hover:border-hue-gold transition cursor-pointer">
               <h3 className="text-hue-gold font-bold text-lg mb-2">Culture</h3>
-              <p className="text-gray-400 text-sm">Heritage & traditions</p>
+              <p className="text-gray-400 text-sm">Heritage and traditions</p>
             </div>
 
             <div className="p-6 bg-hue-midnight border border-hue-blue/30 rounded-xl hover:border-hue-blue transition cursor-pointer">
               <h3 className="text-hue-blue font-bold text-lg mb-2">Music</h3>
-              <p className="text-gray-400 text-sm">Performances & concerts</p>
+              <p className="text-gray-400 text-sm">Performances and concerts</p>
             </div>
           </div>
         </div>
@@ -165,9 +170,11 @@ export default function Home() {
       {/* About Section */}
       <section id="about" className="py-20 px-6 bg-gradient-to-b from-black to-hue-midnight">
         <div className="max-w-4xl mx-auto text-center">
-          <img 
+          <Image 
             src="/HUE-logo.png" 
             alt="HUE Logo" 
+            width={96}
+            height={96}
             className="h-24 w-auto mx-auto mb-8"
           />
           
@@ -176,7 +183,7 @@ export default function Home() {
           </h2>
           
           <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-            WatchHUE is more than a streaming platform—it's a movement to amplify voices that have been underrepresented in mainstream media. We celebrate the rich diversity of Asian-American storytelling, providing a home for creators and audiences who crave authentic, meaningful content.
+            WatchHUE is more than a streaming platform - it is a movement to amplify voices that have been underrepresented in mainstream media. We celebrate the rich diversity of Asian-American storytelling, providing a home for creators and audiences who crave authentic, meaningful content.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 mt-12">
@@ -227,9 +234,11 @@ export default function Home() {
             </button>
 
             <div className="flex items-center gap-4 mb-6">
-              <img 
+              <Image 
                 src="/HUE-logo.png" 
                 alt="HUE Logo" 
+                width={64}
+                height={64}
                 className="h-16 w-auto"
               />
               <h2 className="text-4xl font-bold text-white">
