@@ -19,6 +19,7 @@ export default function Home() {
               width={40}
               height={40}
               unoptimized
+              className="h-10 w-auto"
             />
             <span className="text-2xl font-bold text-white">
               Watch<span className="text-hue-fuchsia">HUE</span>
@@ -49,6 +50,7 @@ export default function Home() {
             width={160}
             height={160}
             unoptimized
+            className="h-32 md:h-40 mb-6 w-auto"
           />
           <h1 className="text-6xl md:text-8xl font-bold text-white">
             Watch<span className="text-hue-fuchsia">HUE</span>
@@ -176,6 +178,7 @@ export default function Home() {
             width={96}
             height={96}
             unoptimized
+            className="h-24 w-auto mx-auto mb-8"
           />
           
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -240,6 +243,7 @@ export default function Home() {
                 width={64}
                 height={64}
                 unoptimized
+                className="h-16 w-auto"
               />
               <h2 className="text-4xl font-bold text-white">
                 About Watch<span className="text-hue-fuchsia">HUE</span>
