@@ -18,7 +18,7 @@ export default function Home() {
               alt="HUE Logo" 
               width={40}
               height={40}
-              className="h-10 w-auto"
+              unoptimized
             />
             <span className="text-2xl font-bold text-white">
               Watch<span className="text-hue-fuchsia">HUE</span>
@@ -48,7 +48,7 @@ export default function Home() {
             alt="HUE Logo" 
             width={160}
             height={160}
-            className="h-32 md:h-40 mb-6 w-auto"
+            unoptimized
           />
           <h1 className="text-6xl md:text-8xl font-bold text-white">
             Watch<span className="text-hue-fuchsia">HUE</span>
@@ -175,7 +175,7 @@ export default function Home() {
             alt="HUE Logo" 
             width={96}
             height={96}
-            className="h-24 w-auto mx-auto mb-8"
+            unoptimized
           />
           
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -239,7 +239,7 @@ export default function Home() {
                 alt="HUE Logo" 
                 width={64}
                 height={64}
-                className="h-16 w-auto"
+                unoptimized
               />
               <h2 className="text-4xl font-bold text-white">
                 About Watch<span className="text-hue-fuchsia">HUE</span>
