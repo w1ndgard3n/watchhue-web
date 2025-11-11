@@ -1,10 +1,24 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { auth } from '@/app/lib/firebase'
+import { onAuthStateChanged, signOut, User } from 'firebase/auth'
+import AuthModal from '@/app/components/AuthModal'
+
 import Image from 'next/image'
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false)
+
+const [showAuthModal, setShowAuthModal] = useState(false)
+const [user, setUser] = useState<User | null>(null)
+
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser)
+  })
+  return () => unsubscribe()
+}, [])
 
   return (
     <main className="min-h-screen bg-hue-midnight">
@@ -35,9 +49,29 @@ export default function Home() {
           </div>
 
           {/* Sign In Button */}
-          <button className="px-6 py-2 bg-hue-fuchsia text-white font-semibold rounded-lg hover:opacity-90 transition">
-            Sign In
-          </button>
+          {user ? (
+  <div className="flex items-center gap-4">
+    <span className="text-white text-sm">
+      {user.email}
+    </span>
+    <button 
+      onClick={() => signOut(auth)}
+      className="px-6 py-2 border border-hue-fuchsia text-hue-fuchsia font-semibold rounded-lg hover:bg-hue-fuchsia hover:text-white transition"
+    >
+      Sign Out
+    </button>
+  </div>
+
+) : (
+  <button 
+    onClick={() => setShowAuthModal(true)}
+    className="px-6 py-2 bg-hue-fuchsia text-white font-semibold rounded-lg hover:opacity-90 transition"
+  >
+    Sign In
+  </button>
+)}
+
+
         </div>
       </nav>
 
@@ -289,6 +323,10 @@ export default function Home() {
           </div>
         </div>
       )}
+
+      {/* Auth Modal */}
+      <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
+
     </main>
   );
 }
