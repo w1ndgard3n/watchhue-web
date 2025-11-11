@@ -37,7 +37,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       onClose()
       setEmail('')
       setPassword('')
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(err.message)
     } finally {
       setLoading(false)
@@ -52,7 +52,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       await signInWithPopup(auth, provider)
       onClose()
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(err.message)
     } finally {
       setLoading(false)
