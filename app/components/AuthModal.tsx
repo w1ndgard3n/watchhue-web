@@ -38,7 +38,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       setEmail('')
       setPassword('')
     } catch (err: unknown) {
-      setError(err.message)
+  setError(err instanceof Error ? err.message : 'An error occurred')
     } finally {
       setLoading(false)
     }
@@ -53,7 +53,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       await signInWithPopup(auth, provider)
       onClose()
     } catch (err: unknown) {
-      setError(err.message)
+  setError(err instanceof Error ? err.message : 'An error occurred')
     } finally {
       setLoading(false)
     }
