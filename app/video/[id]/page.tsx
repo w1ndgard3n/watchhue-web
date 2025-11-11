@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { auth } from '@/app/lib/firebase'
-import { onAuthStateChanged, User } from 'firebase/auth'
+import { onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import VideoPlayer from '@/app/components/VideoPlayer'
 import Link from 'next/link'
@@ -12,8 +12,6 @@ import Image from 'next/image'
 export default function VideoPage() {
   const params = useParams()
   const router = useRouter()
-  const videoId = params.id as string
-  const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -21,7 +19,6 @@ export default function VideoPage() {
       if (!currentUser) {
         router.push('/')
       } else {
-        setUser(currentUser)
         setLoading(false)
       }
     })
@@ -37,7 +34,7 @@ export default function VideoPage() {
   }
 
   // For now, we'll hardcode the test video
-  // Later, we'll fetch this from Firestore based on videoId
+  // Later, we'll fetch this from Firestore based on params.id
   const testVideo = {
     id: 'test-video',
     title: 'Test Video - Mountain Scenery',
