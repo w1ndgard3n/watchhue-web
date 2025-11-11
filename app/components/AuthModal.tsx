@@ -8,6 +8,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider 
 } from 'firebase/auth'
+import { db } from '@/app/lib/firebase'
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 
 interface AuthModalProps {
   isOpen: boolean
@@ -21,6 +23,23 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
+
+// Create user document in Firestore
+  const createUserDocument = async (userId: string, userEmail: string) => {
+    
+    try {
+    
+      await setDoc(doc(db, 'users', userId), {
+        email: userEmail,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      })
+    
+    } catch (error) {
+      console.error('❌ Error creating user document:', error)
+    }
+  }
+
   if (!isOpen) return null
 
   const handleEmailAuth = async (e: React.FormEvent) => {
@@ -30,7 +49,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
     try {
       if (isSignUp) {
-        await createUserWithEmailAndPassword(auth, email, password)
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+        await createUserDocument(userCredential.user.uid, email)
       } else {
         await signInWithEmailAndPassword(auth, email, password)
       }
@@ -50,7 +70,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     const provider = new GoogleAuthProvider()
 
     try {
-      await signInWithPopup(auth, provider)
+      const result = await signInWithPopup(auth, provider)
+      await createUserDocument(result.user.uid, result.user.email || '')
       onClose()
     } catch (err: unknown) {
   setError(err instanceof Error ? err.message : 'An error occurred')
