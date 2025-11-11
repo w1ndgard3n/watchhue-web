@@ -1,6 +1,5 @@
 'use client'
 
-import { useParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { auth } from '@/app/lib/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -10,7 +9,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export default function VideoPage() {
-  const params = useParams()
   const router = useRouter()
   const [loading, setLoading] = useState(true)
 
