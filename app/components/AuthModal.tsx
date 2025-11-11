@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { auth } from '@/app/lib/firebase'
 import { 
   createUserWithEmailAndPassword, 
@@ -22,6 +23,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
 
 // Create user document in Firestore
@@ -54,6 +56,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       } else {
         await signInWithEmailAndPassword(auth, email, password)
       }
+      router.push('/browse')
       onClose()
       setEmail('')
       setPassword('')
@@ -72,6 +75,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       const result = await signInWithPopup(auth, provider)
       await createUserDocument(result.user.uid, result.user.email || '')
+      router.push('/browse')
       onClose()
     } catch (err: unknown) {
   setError(err instanceof Error ? err.message : 'An error occurred')
